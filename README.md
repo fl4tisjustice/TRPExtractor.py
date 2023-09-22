@@ -9,8 +9,13 @@ To install, simply clone this repo and run the `TRPExtractor.py` file inside wit
 # Usage
 
 ```
-$ python TRPExtractor -h
+usage: TRPExtractor.py [-h] [-o TROPHY_DATA] TROPHY.TRP
 
-Usage: python TRPExtractor.py <file>.trp
+positional arguments:
+  TROPHY.TRP      input file
+
+options:
+  -h, --help      show this help message and exit
+  -o TROPHY_DATA  output folder
 ```
 
