@@ -3,6 +3,8 @@ import typing
 
 MAGIC: int = 0xDCA24D00
 
+# https://www.psdevwiki.com/ps3/TROPHY.TRP
+
 @dataclass
 class TRPHeader:
     magic: int
