@@ -4,6 +4,8 @@ import typing
 from lib.trp_structure import TRPHeader, TRPEntry
 from lib.trp_parser import TRPParser
 
+HEADER_PADDING: int = 36
+
 class TRP:
     def __init__(self, parser: TRPParser):
         self.parser = parser
@@ -15,7 +17,7 @@ class TRP:
             self.parser.read_uint32(),
             self.parser.read_uint32(),
         )
-        self.parser.skip(36)
+        self.parser.skip(HEADER_PADDING)
 
         self.entries: list[TRPEntry] = []
         
