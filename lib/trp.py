@@ -28,4 +28,3 @@ class TRP:
                 self.parser.read_uint64()
             ))
             self.parser.skip(self.header.entry_size - 48)
-        

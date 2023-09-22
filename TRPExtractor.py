@@ -30,6 +30,3 @@ if __name__ == "__main__":
         total_size += entry.size
 
     print(f"[INFO] Extracted {total_size / 1_000_000 :0.2f} MB successfully.")
-
-
-        
