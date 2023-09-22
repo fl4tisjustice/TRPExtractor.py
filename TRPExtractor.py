@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import os
 
-from lib.trp import TRP
+from lib.trp_structure import TRP
 from lib.trp_parser import TRPParser
 
 if __name__ == "__main__":
@@ -13,7 +13,8 @@ if __name__ == "__main__":
     with open(args.trp, 'rb') as trp:
         trp_bin = trp.read()
 
-    trp = TRP(TRPParser(trp_bin))
+    parser = TRPParser(trp_bin)
+    trp = parser.parse()
 
     if not os.path.exists(args.out):
          os.mkdir(args.out)
@@ -24,7 +25,7 @@ if __name__ == "__main__":
 
     for entry in trp.entries:
         print(f"[INFO] Extracting {entry.name}...")
-        buffer = trp.parser.read_entry(entry.offset, entry.size)
+        buffer = parser.read_entry(entry.offset, entry.size)
         with open(entry.name, 'wb') as fd:
             fd.write(buffer)
         total_size += entry.size

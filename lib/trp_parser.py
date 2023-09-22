@@ -1,6 +1,9 @@
+from lib.trp_structure import TRPHeader, TRPEntry, TRP
+
 import typing
 
 ENTRY_NAME_MAX_LENGTH: int = 32
+HEADER_PADDING: int = 36
 
 class TRPParser:
     def __init__(self, raw_data: bytes):
@@ -28,3 +31,25 @@ class TRPParser:
 
     def read_entry(self, offset: int, size: int) -> bytes:
         return self.raw_data[offset:offset+size]
+
+    def parse(self) -> TRP:
+        header: TRPHeader = TRPHeader(
+            self.read_uint32(),
+            self.read_uint32(),
+            self.read_uint64(),
+            self.read_uint32(),
+            self.read_uint32(),
+            self.read_uint32(),
+        )
+        self.skip(HEADER_PADDING)
+
+        entries: list[TRPEntry] = []
+        for _ in range(header.file_count):
+            entries.append(TRPEntry(
+                self.read_entry_name(),
+                self.read_uint64(),
+                self.read_uint64()
+            ))
+            self.skip(header.entry_size - 48)
+
+        return TRP(header, entries)

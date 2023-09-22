@@ -26,3 +26,8 @@ class TRPEntry:
     name: str
     offset: int
     size: int
+
+@dataclass
+class TRP:
+    header: TRPHeader
+    entries: list[TRPEntry]
