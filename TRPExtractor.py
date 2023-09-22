@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     trp = TRP(TRPParser(trp_bin))
 
-    if (not os.path.exists(args.out)):
+    if not os.path.exists(args.out):
          os.mkdir(args.out)
 
     os.chdir(args.out)
