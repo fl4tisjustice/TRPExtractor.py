@@ -3,7 +3,7 @@ import typing
 ENTRY_NAME_MAX_LENGTH: int = 32
 
 class TRPParser:
-    def __init__(self, raw_data):
+    def __init__(self, raw_data: bytes):
         self.raw_data = raw_data
         self.pointer: int = 0
 
